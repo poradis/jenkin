@@ -1,0 +1,19 @@
+Jenkinsfile (Declarative Pipeline)
+/* Requires the Docker Pipeline plugin */
+pipeline {
+    agent { docker { image 'bitnami/jenkins' } }
+    stages {
+        stage('one') {
+            steps {
+                echo 'Hello Ja'
+                sh 'mvn --version'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'I succeeded!'
+            }
+        failure {
+            echo 'I failed :('
+        }
